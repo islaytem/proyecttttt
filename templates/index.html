@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #6c5b7b;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+        }
+        header img {
+            width: 50px;
+            vertical-align: middle;
+        }
+        header h1 {
+            margin: 0;
+            display: inline-block;
+            font-size: 1.5em;
+        }
+        nav {
+            margin: 1em 0;
+            text-align: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #6c5b7b;
+            margin: 0 1em;
+            font-size: 1.2em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body> 
+    {% extends 'base.html' %}
+
+{% block title %}
+Inicio
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Bienvenido a la calle</h1>
+</header>
+<main>
+    <nav>
+        <a href="{{ url_for('login') }}">Iniciar Sesión</a>
+        <a href="{{ url_for('register') }}">Registrar</a>
+        {% if 'user_id' in session %}
+            <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+            {% if session['is_admin'] %}
+                <a href="{{ url_for('protected') }}">Panel de Administración</a>
+            {% endif %}
+        {% endif %}
+    </nav>
+</main>
+{% endblock %}
+
+
+ </body>
+</html> 

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Editar Usuario
+{% endblock %}
+
+{% block content %}
+<h2>Editar Usuario</h2>
+<form method="POST">
+    <label for="username">Nombre de Usuario:</label>
+    <input type="text" id="username" name="username" value="{{ user[1] }}" required>
+    {% if user[0] != session['user_id'] %}
+    <label for="is_admin">Es Admin:</label>
+    <input type="checkbox" id="is_admin" name="is_admin" {% if user[2] %}checked{% endif %}>
+    {% else %}
+    <p>No puedes cambiar tu propio estatus de admin.</p>
+    {% endif %}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock %}
